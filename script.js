@@ -1,14 +1,16 @@
 const html = document.querySelector("html");
+const title = document.querySelector(".app__title");
+const img = document.querySelector(".app__image");
+const timer = document.querySelector("#timer");
+const music = new Audio("/sons/luna-rise-part-one.mp3");
+music.loop = true;
 
 const focoBtn = document.querySelector(".app__card-button--foco");
 const curtoBtn = document.querySelector(".app__card-button--curto");
 const longoBtn = document.querySelector(".app__card-button--longo");
 const startBtn = document.querySelector("#start-pause");
 const modeBtns = document.querySelectorAll(".app__card-button");
-
-const title = document.querySelector(".app__title");
-const img = document.querySelector(".app__image");
-const timer = document.querySelector("#timer");
+const musicBtn = document.querySelector("#alternar-musica");
 
 const tempoFoco = 1500;
 const tempoCurto = 300;
@@ -52,4 +54,8 @@ curtoBtn.addEventListener("click", () => {
 longoBtn.addEventListener("click", () => {
   mudarContexto("descanso-longo");
   longoBtn.classList.add("active");
+});
+
+musicBtn.addEventListener("change", () => {
+  music.paused ? music.play() : music.pause();
 });
