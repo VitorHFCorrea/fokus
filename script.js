@@ -11,10 +11,14 @@ const longoBtn = document.querySelector(".app__card-button--longo");
 const startBtn = document.querySelector("#start-pause");
 const modeBtns = document.querySelectorAll(".app__card-button");
 const musicBtn = document.querySelector("#alternar-musica");
+const startPauseBtn = document.querySelector("#start-pause");
 
 const tempoFoco = 1500;
 const tempoCurto = 300;
 const tempoLongo = 900;
+
+let tempoDecorrido = 5;
+let intervalo = null;
 
 const mudarContexto = (contexto) => {
   modeBtns.forEach((button) => {
@@ -59,3 +63,24 @@ longoBtn.addEventListener("click", () => {
 musicBtn.addEventListener("change", () => {
   music.paused ? music.play() : music.pause();
 });
+
+const decrementarTempo = () => {
+  if (tempoDecorrido <= 0) {
+    pararContagem();
+    alert("Tempo finalizado!");
+    return;
+  }
+  tempoDecorrido--;
+  console.log(tempoDecorrido);
+};
+
+const iniciarContagem = () => {
+  intervalo = setInterval(decrementarTempo, 1000);
+};
+
+startPauseBtn.addEventListener("click", iniciarContagem);
+
+const pararContagem = () => {
+  clearInterval(intervalo);
+  intervalo = null;
+};
