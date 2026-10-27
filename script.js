@@ -4,6 +4,7 @@ const focoBtn = document.querySelector(".app__card-button--foco");
 const curtoBtn = document.querySelector(".app__card-button--curto");
 const longoBtn = document.querySelector(".app__card-button--longo");
 const startBtn = document.querySelector("#start-pause");
+const modeBtns = document.querySelectorAll(".app__card-button");
 
 const title = document.querySelector(".app__title");
 const img = document.querySelector(".app__image");
@@ -14,6 +15,10 @@ const tempoCurto = 300;
 const tempoLongo = 900;
 
 const mudarContexto = (contexto) => {
+  modeBtns.forEach((button) => {
+    button.classList.remove("active");
+  });
+
   html.setAttribute("data-contexto", contexto);
   img.setAttribute("src", `/imagens/${contexto}.png`);
   switch (contexto) {
@@ -36,17 +41,15 @@ const mudarContexto = (contexto) => {
 
 focoBtn.addEventListener("click", () => {
   mudarContexto("foco");
-  title.innerHTML("teste", "teste");
+  focoBtn.classList.add("active");
 });
 
 curtoBtn.addEventListener("click", () => {
   mudarContexto("descanso-curto");
-  title.innerHTML(
-    "Que tal dar uma respirada?<br/><strong>Faça uma pausa curta!</strong>",
-  );
+  curtoBtn.classList.add("active");
 });
 
 longoBtn.addEventListener("click", () => {
   mudarContexto("descanso-longo");
-  title.innerHTML();
+  longoBtn.classList.add("active");
 });
