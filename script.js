@@ -4,6 +4,9 @@ const img = document.querySelector(".app__image");
 const timer = document.querySelector("#timer");
 const music = new Audio("/sons/luna-rise-part-one.mp3");
 music.loop = true;
+const pauseSound = new Audio("/sons/pause.mp3");
+const startSound = new Audio("/sons/play.wav");
+const alertSound = new Audio("/sons/beep.mp3");
 
 const focoBtn = document.querySelector(".app__card-button--foco");
 const curtoBtn = document.querySelector(".app__card-button--curto");
@@ -67,6 +70,7 @@ musicBtn.addEventListener("change", () => {
 const decrementarTempo = () => {
   if (tempoDecorrido <= 0) {
     pararContagem();
+    alertSound.play();
     alert("Tempo finalizado!");
     return;
   }
@@ -74,11 +78,17 @@ const decrementarTempo = () => {
   console.log(tempoDecorrido);
 };
 
-const iniciarContagem = () => {
+const iniciarPausarContagem = () => {
+  if (intervalo) {
+    pararContagem();
+    pauseSound.play();
+    return;
+  }
+  startSound.play();
   intervalo = setInterval(decrementarTempo, 1000);
 };
 
-startPauseBtn.addEventListener("click", iniciarContagem);
+startPauseBtn.addEventListener("click", iniciarPausarContagem);
 
 const pararContagem = () => {
   clearInterval(intervalo);
