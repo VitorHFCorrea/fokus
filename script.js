@@ -17,11 +17,11 @@ const startPauseBtn = document.querySelector("#start-pause");
 const startPauseBtnText = document.querySelector("#start-pause span");
 const startPauseBtnIcon = document.querySelector("#start-pause img");
 
-const tempoFoco = 1500;
-const tempoCurto = 300;
-const tempoLongo = 900;
+// const tempoFoco = 1500;
+// const tempoCurto = 300;
+// const tempoLongo = 900;
 
-let tempoDecorrido = 5;
+let tempoDecorrido = 1500;
 let intervalo = null;
 
 const mudarContexto = (contexto) => {
@@ -100,6 +100,13 @@ const pararContagem = () => {
   intervalo = null;
 };
 
-const mostrarTempo = () => (timer.innerHTML = `${tempoDecorrido}`);
+const mostrarTempo = () => {
+  const tempo = new Date(tempoDecorrido * 1000);
+  const tempoFormatado = tempo.toLocaleString("pt-BR", {
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  timer.innerHTML = `${tempoFormatado}`;
+};
 
 mostrarTempo();
