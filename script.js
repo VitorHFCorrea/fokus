@@ -11,10 +11,10 @@ const alertSound = new Audio("/sons/beep.mp3");
 const focoBtn = document.querySelector(".app__card-button--foco");
 const curtoBtn = document.querySelector(".app__card-button--curto");
 const longoBtn = document.querySelector(".app__card-button--longo");
-const startBtn = document.querySelector("#start-pause");
 const modeBtns = document.querySelectorAll(".app__card-button");
 const musicBtn = document.querySelector("#alternar-musica");
 const startPauseBtn = document.querySelector("#start-pause");
+const startPauseBtnContent = document.querySelector("#start-pause span");
 
 const tempoFoco = 1500;
 const tempoCurto = 300;
@@ -84,6 +84,7 @@ const iniciarPausarContagem = () => {
     pauseSound.play();
     return;
   }
+  startPauseBtnContent.textContent = "Pausar";
   startSound.play();
   intervalo = setInterval(decrementarTempo, 1000);
 };
@@ -91,6 +92,7 @@ const iniciarPausarContagem = () => {
 startPauseBtn.addEventListener("click", iniciarPausarContagem);
 
 const pararContagem = () => {
+  startPauseBtnContent.textContent = "Começar";
   clearInterval(intervalo);
   intervalo = null;
 };
