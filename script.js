@@ -76,7 +76,7 @@ const decrementarTempo = () => {
     return;
   }
   tempoDecorrido--;
-  console.log(tempoDecorrido);
+  mostrarTempo();
 };
 
 const iniciarPausarContagem = () => {
@@ -99,3 +99,7 @@ const pararContagem = () => {
   clearInterval(intervalo);
   intervalo = null;
 };
+
+const mostrarTempo = () => (timer.innerHTML = `${tempoDecorrido}`);
+
+mostrarTempo();
