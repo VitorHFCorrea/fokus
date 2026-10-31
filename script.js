@@ -60,16 +60,7 @@ longoBtn.addEventListener("click", () => mudarContexto("descanso-longo"));
 
 musicBtn.addEventListener("change", () => (music.paused ? music.play() : music.pause()));
 
-const decrementarTempo = () => {
-  if (tempoDecorrido <= 0) {
-    pararContagem();
-    alertSound.play();
-    alert("Tempo finalizado!");
-    return;
-  }
-  tempoDecorrido--;
-  mostrarTempo();
-};
+startPauseBtn.addEventListener("click", iniciarPausarContagem);
 
 const iniciarPausarContagem = () => {
   if (intervalo) {
@@ -83,7 +74,16 @@ const iniciarPausarContagem = () => {
   intervalo = setInterval(decrementarTempo, 1000);
 };
 
-startPauseBtn.addEventListener("click", iniciarPausarContagem);
+const decrementarTempo = () => {
+  if (tempoDecorrido <= 0) {
+    pararContagem();
+    alertSound.play();
+    alert("Tempo finalizado!");
+    return;
+  }
+  tempoDecorrido--;
+  mostrarTempo();
+};
 
 const pararContagem = () => {
   startPauseBtnIcon.setAttribute("src", "/imagens/play_arrow.png");
