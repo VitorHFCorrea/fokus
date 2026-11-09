@@ -60,8 +60,6 @@ longoBtn.addEventListener("click", () => mudarContexto("descanso-longo"));
 
 musicBtn.addEventListener("change", () => (music.paused ? music.play() : music.pause()));
 
-startPauseBtn.addEventListener("click", iniciarPausarContagem);
-
 const iniciarPausarContagem = () => {
   if (intervalo) {
     pararContagem();
@@ -73,6 +71,8 @@ const iniciarPausarContagem = () => {
   startSound.play();
   intervalo = setInterval(decrementarTempo, 1000);
 };
+
+startPauseBtn.addEventListener("click", iniciarPausarContagem);
 
 const decrementarTempo = () => {
   if (tempoDecorrido <= 0) {
